@@ -1,9 +1,6 @@
 # PitLane — 2026 Formula 1 Dashboard
 
-A modern, responsive, portfolio-ready Formula 1 analytics dashboard built specifically for the 2026 season. Designed with an independent SaaS telemetry aesthetic inspired by motorsport telemetry displays.
-
-> **Important**: This is a **frontend-only** Single Page Application (SPA). There is **no backend, database, server proxy, authentication, or custom backend service**. All data is fetched directly from the browser to the public F1 API over client-side REST requests.
-
+A modern, responsive, portfolio-ready Formula 1 analytics dashboard built specifically for the 2026 season. .
 ---
 
 ## Overview
@@ -139,88 +136,3 @@ pitlane/
 ## API
 
 PitLane consumes the community-maintained [Jolpica F1 API](https://github.com/jolpica/jolpica-f1), an Ergast-compatible public REST API supporting CORS client-side requests:
-
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/{season}/races.json?limit=100` | GET | Full 2026 season race calendar |
-| `/{season}/{round}/results.json?limit=100` | GET | Official classification for a specific Grand Prix |
-| `/{season}/results.json?limit=100&offset={offset}` | GET | Paginated multi-round results for championship progression |
-| `/{season}/driverstandings.json` | GET | 2026 Drivers' World Championship standings |
-| `/{season}/constructorstandings.json` | GET | 2026 Constructors' World Championship standings |
-
----
-
-## Environment Variables
-
-PitLane relies on standard Vite client-side environment variables prefixed with `VITE_`.
-
-Create a `.env` file in the root directory (or copy `.env.example`):
-
-```bash
-# Public F1 API base URL (CORS-enabled, client-accessible)
-VITE_F1_API_URL=https://api.jolpi.ca/ergast/f1
-```
-
-> **Security Note**: Never place API keys, private tokens, or secrets in this project. The client calls public read-only endpoints directly.
-
----
-
-## Local Development
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18.0.0 or later, tested with v24)
-- [npm](https://www.npmjs.com/) (v9 or later)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone <repo-url>
-cd "F1 FanRouter"
-
-# 2. Install dependencies
-npm install
-
-# 3. Start local development server
-npm run dev
-```
-
-Open your browser at `http://localhost:5173`.
-
----
-
-## Build & Deployment
-
-To verify TypeScript types and create an optimized production bundle:
-
-```bash
-# Type check and build bundle
-npm run build
-```
-
-This outputs static HTML, CSS, and JS files to the `dist/` directory.
-
-To preview the production build locally:
-
-```bash
-npm run preview
-```
-
-### Static Hosting Notes
-Since PitLane is a client-side Single Page Application (SPA) using React Router HTML5 History mode:
-- On **Vercel**: Deploy with standard Vite preset.
-- On **Netlify**: Ensure `/* /index.html 200` rewrite is configured.
-- On **GitHub Pages / Cloudflare Pages / AWS S3**: Configure all 404 routes to redirect to `index.html`.
-
----
-
-## Screenshots
-
-*(Place screenshots of Dashboard, Calendar, Race Results, Drivers and Constructors views here)*
-
----
-
-## License & Attribution
-
-- Built as an independent portfolio project.
-- Formula 1, F1, Grand Prix, and related marks are trade marks of Formula One Licensing B.V., a Formula 1 company. This project is not associated in any way with Formula One Group.
