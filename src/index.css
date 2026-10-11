@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   DESIGN TOKENS (Editorial Motorsport Design System)
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Dark Base (Neutral Warm Off-Black) */
+  --color-bg: #121214;
+  --color-surface: #18181C;
+  --color-surface-subtle: #1F1F24;
+  --color-line: #27272D;
+  --color-line-subtle: #1D1D22;
+  --color-text: #F4F4F6;
+  --color-text-dim: #A1A1AA;
+  --color-text-subtle: #71717A;
+
+  /* Restrained Functional Accents - No Glows, Flat Color */
+  --color-primary: #E10600; /* F1 Race Red: Active tabs, live indicators, primary CTAs */
+  --color-accent: #00D2BE;  /* Timing Turquoise: Sector personal bests, timing links */
+  --color-purple: #B15CFF;  /* Sector fastest overall */
+  --color-yellow: #E5A93C;  /* Neutral sector time */
+
+  /* Type Scale */
+  --font-size-xs: 0.75rem;     /* 12px - Meta / Data labels */
+  --font-size-sm: 0.875rem;    /* 14px - Body / Table rows */
+  --font-size-base: 1rem;      /* 16px - Base text / Section titles */
+  --font-size-lg: 1.25rem;     /* 20px - Card headers */
+  --font-size-xl: 2rem;        /* 32px - Module figures */
+  --font-size-display: 3.5rem; /* 56px - Title fight margin hero */
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-12: 3rem;    /* 48px */
+
+  /* Radii & Durations */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Semantic aliases */
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --line: var(--color-line);
+  --border: var(--color-line);
+  --text: var(--color-text);
+  --text-dim: var(--color-text-dim);
+  --primary: var(--color-primary);
+  --accent: var(--color-accent);
+}
+
+/* Light Theme Support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #F8F9FA;
+    --color-surface: #FFFFFF;
+    --color-surface-subtle: #F1F3F5;
+    --color-line: #E4E4E7;
+    --color-line-subtle: #EEEEF1;
+    --color-text: #18181B;
+    --color-text-dim: #52525B;
+    --color-text-subtle: #71717A;
+    --color-primary: #E10600;
+    --color-accent: #00877C;
+  }
+}
+
+@theme {
+  --font-display: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-line: var(--color-line);
+  --color-text: var(--color-text);
+  --color-text-dim: var(--color-text-dim);
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .font-body {
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary) !important;
+    outline-offset: 2px !important;
+  }
+
+  .tabular-nums, .num, td.num, th.num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+}
+
+/* ==========================================================================
+   CLEAN SURFACE & COMPONENT STYLES (No Glows, No Blend Modes, No Blur Filters)
+   ========================================================================== */
+
+/* Flat architectural surfaces with subtle hairlines */
+.surface-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.surface-subtle {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-line-subtle);
+}
+
+/* Static clean live indicator (No infinite glow or CPU animation) */
+.live-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Timing Feed Sector Badges (Flat color, no box-shadow blurs) */
+.sector-purple {
+  color: var(--color-purple);
+  background-color: rgba(177, 92, 255, 0.12);
+}
+.sector-green {
+  color: #00D26A;
+  background-color: rgba(0, 210, 106, 0.12);
+}
+.sector-yellow {
+  color: var(--color-yellow);
+  background-color: rgba(229, 169, 60, 0.12);
+}
+
+/* Row interaction: GPU-accelerated transform & opacity only */
+.data-row {
+  transition: background-color var(--duration-fast) ease;
+}
+.data-row:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+/* Content visibility containment for performance on long offscreen sections */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* Accessibility: strict prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Minimalist native scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-dim);
+}
